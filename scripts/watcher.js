@@ -17,9 +17,14 @@ var server =httpServer.createServer();
 server.address = "localhost";
 server.listen(PORT, 'localhost');
 
-exec('npx tsc')
+build();
 console.log("Currently listening on src/");
 watch('../src/', { recursive: true }, function(evt, name) {
   console.log('%s changed.', name);
-  exec('npx tsc')
+  build();
 });
+
+function build() {
+  exec('npx tsc')
+  fs.copyFileSync("../src/index.html", "../dist/index.html");
+}
