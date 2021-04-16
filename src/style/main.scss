@@ -1,0 +1,16 @@
+div {
+  background-color: red !important;
+
+  & .div {
+    color: red;
+    & .div {
+      color: red;
+      & .div {
+        color: red;
+        & .div {
+          color: red;
+        }
+      }
+    }
+  }
+}
