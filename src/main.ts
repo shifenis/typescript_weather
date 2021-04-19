@@ -1,10 +1,16 @@
-import * as binding from "./utils/binding.js"
+import { Binding } from "./utils/binding.js"
 
 class Main {
 
   constructor() {
-    console.log('entro');
-    binding.oneWayBinding(document.getElementById("testo") as HTMLInputElement).then((value) => console.log(value));
+    const binding = new Binding(
+      document.getElementById("testo") as HTMLInputElement,
+      console.log
+    );
+
+    setInterval(() => {
+      binding.setValue(Math.random().toString());
+    }, 5000);
   }
 }
 

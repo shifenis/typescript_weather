@@ -1,14 +1,23 @@
+export class Binding {
 
-let value;
 
-export function oneWayBinding(inputElement: HTMLInputElement): Promise<string> {
-  return new Promise((resolve) => {
-    ['keyup', 'paste'].forEach(
-      (e) => inputElement.addEventListener(e, (event) => {
-        value = (event.target as HTMLInputElement).value;
-        resolve(value);
+  constructor(
+    private inputElement: HTMLInputElement,
+    private callback: (param: string) => void = () => { }
+  ) {
+    ['keyup', 'paste', "change"].forEach(
+      (e) => this.inputElement.addEventListener(e, (event) => {
+        callback((event.target as HTMLInputElement).value);
       })
-    )
-  })
+    );
+  }
+
+  public setValue(param: string): void {
+    this.callback(param);
+    this.inputElement.value = param;
+  }
+
 }
+
+
 
