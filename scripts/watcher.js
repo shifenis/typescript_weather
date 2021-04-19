@@ -3,9 +3,8 @@ const httpServer = require('http-server');
 const process = require('process');
 const fs = require('fs');
 const { exec } = require("child_process");
-const sass = require("sass");
 const path = require("path");
-const package = require("../package.json");
+const copydirSync = require('copy-dir/libs/copydirSync');
 
 
 const PORT = 8000;
@@ -34,7 +33,12 @@ watch('../src/', { recursive: true }, function (evt, name) {
 
 function build() {
   exec('npx tsc')
+  buildAssets()
   fs.copyFileSync("../src/index.html", "../dist/index.html");
+}
+
+function buildAssets() {
+  copydirSync("../src/assets/", "../dist/assets/");
 }
 
 
