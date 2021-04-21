@@ -84,9 +84,10 @@ head title {
     .row {
       justify-content: center;
     }
-
-    .space-evenly {
-      justify-content: space-evenly;
+    
+    #elements {
+      @extend .space-around;
+      flex-grow: 1;
     }
 
     #cloud-image {
@@ -107,16 +108,10 @@ head title {
 
     #temperature-wrapper {
       flex-grow: 1;
-      
+
       .temperature {
         font-size: 4vh;
         font-weight: 700;
-      }
-
-      .line {
-        height: 2px;
-        width: 3vh;
-        background: rgb(99, 99, 99);
       }
 
       .temperature-position {
@@ -124,5 +119,68 @@ head title {
         font-weight: 100;
       }
     }
+
+    .line {
+      height: 2px;
+      width: 3vh;
+      background: rgb(99, 99, 99);
+    }
+
+    .circle {
+      width: 9vh;
+      height: 9vh;
+      justify-content: center;
+      align-items: center;
+      display: flex;
+      border-radius: 50%;
+
+      &.blue {
+        background: #78d2ff30;
+        border: 1px solid #4cb1e450;
+
+        i {
+          color: #318cb8;
+        }
+      }
+
+      &.green {
+        background: #39facd50;
+        border: 1px solid #39facd60;
+
+        & i {
+          color: #02755a;
+        }
+      }
+
+      &.yellow {
+        background: #f5e65350;
+        border: 1px solid #f5e65360;
+
+        & i {
+          color: #dfb10e;
+        }
+      }
+    }
+
+    sub {
+      position: relative;
+      top: 0.5vh;
+    }
   }
+}
+
+.space-evenly {
+  justify-content: space-evenly !important;
+}
+
+.space-around {
+  justify-content: space-around !important;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.font-thin {
+  font-weight: 100;
 }
