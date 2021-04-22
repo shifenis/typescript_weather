@@ -1,5 +1,5 @@
 import { Binding } from "./utils/binding.js"
-
+import { WeatherService } from "./service/weather.service.js";
 class Main {
 
   // constructor() {
@@ -12,6 +12,12 @@ class Main {
   //     binding.setValue(Math.random().toString());
   //   }, 5000);
   // }
+
+  private weatherService = new WeatherService();
+
+  constructor() {
+    this.weatherService.getWeather(41.54,12.28).then((log) => console.log(log)).catch(console.error);
+  }
 }
 
 const main = new Main();
